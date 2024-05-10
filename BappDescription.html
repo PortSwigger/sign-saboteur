@@ -1,0 +1,78 @@
+<p>SignSaboteur is a Burp Suite extension for editing, signing, verifying, and attacking signed tokens. It supports different types of tokens: Django TimestampSigner, ItsDangerous Signer, Express cookie-session middleware, OAuth2 Proxy, Tornado's signed cookies, Ruby Rails Signed cookies, Nimbus JOSE + JWT and Unknown signed string.</p>
+
+<p>It provides automatic detection and in-line editing of token within HTTP requests/responses and WebSocket messages, signing of tokens and automation of brute force attacks against signed tokens implementations.</p>
+
+<p>Features</p>
+
+<p>Wordlist view</p>
+
+<p>The Wordlist View allows to import secrets and salts list files. The extension has own prebuilt dictionary lists. Most secrets are taken from <a href="https://github.com/wallarm/jwt-secrets">jwt-secrets</a>. As an option, <a href="https://github.com/Paradoxis/Flask-Unsign-Wordlist">Flask-Unsign-Wordlist</a> can be used. The extension supports JSON strings format for special characters. To use it, quote the secret string with ".</p>
+
+<p>Editor view</p>
+
+<p>The Editor View supports a number of signed tokens: Django, Dangerous, Flask, Express, OAuth2 and Tornado. It allows modification of the signed tokens at Burp Suite's HTTP Request/Response view in the Proxy, History and Repeater tools.<br>
+The Dangerous tab can be used for both, Flask and Django tokens, which are selected depending on whether a Dangerous or Django token is detected.<br>
+The Unknown tab can be used to brute force unknown signed strings. Guessing mode works only with Balanced and Deep brute force attacks. It supports different message derivation techniques, including:</p>
+
+<ul>
+	<li>None: message will be used as is</li>
+	<li>CONCAT: separator byte will be removed from the message and that new value will be used to calculate signature</li>
+	<li>Tornado: separator byte will be added to the end of the message string</li>
+</ul>
+
+<p>Editable fields</p>
+
+<p>A JSON text editor is provided to edit each component that contain JSON content:</p>
+
+<ul>
+	<li>Dangerous Payload</li>
+	<li>Django Payload (except pickle serialized payload)</li>
+	<li>Express Payload</li>
+	<li>JWT Payload</li>
+</ul>
+
+<p>A timestamp editor is provided to edit each component that contain it:</p>
+
+<ul>
+	<li>Dangerous timestamp</li>
+	<li>Django timestamp</li>
+	<li>OAuth2 Proxy timestamp</li>
+	<li>Tornado timestamp</li>
+</ul>
+
+<p>A hex editor is provided to all signed tokens, except Express signatures. NOTE Express Tab doesn't support signature auto update yet. Please copy it manually to corresponding signature cookie.</p>
+
+<p>Sign</p>
+
+<p>Sign presents a signing dialog that can be used to update the Signature by signing the token using a key from the Keys View that has signing capabilities</p>
+
+<p>Brute force</p>
+
+<p>Brute force will attempt to find secret key that was used for signature generation. If a secret key was found, a dialog will be presented.<br>
+The Brute force option implements three types of attacks against signed tokens Signatures:</p>
+
+<ul>
+	<li>Known keys: Uses previously found secret keys only</li>
+	<li>Fast: Uses default hashing algorithm and key derivation</li>
+	<li>Balanced: Uses all known key derivation technics, except PBKDF2WithHmacSHA1, PBKDF2WithHmacSHA256</li>
+	<li>Deep: Uses all key derivation technics, including different types supported by Ruby Rails framework</li>
+</ul>
+
+<p>Attack</p>
+
+<p>The Attack option implements eight well-known authorization attacks against signed tokens:</p>
+
+<ul>
+	<li>User claims</li>
+	<li>Wrapped user claims</li>
+	<li>Username and password claims</li>
+	<li>Flask claims</li>
+	<li>Express claims</li>
+	<li>Account user claims</li>
+	<li>Authenticated claims</li>
+	<li>User access_token</li>
+</ul>
+
+<p>For more details on attacks, check out the repository.</p>
+
+<p>Copyright &copy; 2024 PortSwigger Ltd.</p>
