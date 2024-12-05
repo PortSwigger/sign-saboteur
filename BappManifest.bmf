@@ -2,12 +2,12 @@ Uuid: e62afa49e12543edbfa9df498363153c
 ExtensionType: 1
 Name: SignSaboteur, Web Token Signer
 RepoName: sign-saboteur
-ScreenVersion: 1.0.4
-SerialVersion: 1
+ScreenVersion: 1.0.6
+SerialVersion: 2
 MinPlatformVersion: 8
 ProOnly: False
 Author: Zakhar Fedotkin, PortSwigger
 ShortDescription: Extension for editing, signing, verifying various signed web tokens.
-EntryPoint: build/libs/sign-saboteur-1.0.4.jar
+EntryPoint: build/libs/sign-saboteur-1.0.6.jar
 BuildCommand: ./gradlew jar
 SupportedProducts: Pro, Community
